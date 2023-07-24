@@ -11,10 +11,15 @@ class LinkedStack<E> : Stack<E> {
     }
 
     override fun pop(): E {
-        val element = head?.value ?: throw EmptyStackException()
-        head = head!!.prev
-        return element
+        if (isEmpty) throw EmptyStackException()
+
+        val localHead = head!!
+        head = localHead.prev
+        return localHead.value
     }
+
+    override val isEmpty: Boolean get() = head == null
+
 
     private data class Node<E>(
         val value: E,

@@ -4,7 +4,7 @@ import java.util.*
 
 class ArrayStack<E>(capacity: Int) : Stack<E> {
 
-    private var array = Array<Any?>(capacity) { null }
+    private var array = Array<Any?>(capacity) {}
     private var pointer = 0
 
     override fun push(element: E) {
@@ -12,11 +12,11 @@ class ArrayStack<E>(capacity: Int) : Stack<E> {
     }
 
     override fun pop(): E {
-        if (pointer == 0) {
-            throw EmptyStackException()
-        }
+        if (isEmpty) throw EmptyStackException()
 
         @Suppress("UNCHECKED_CAST")
         return array[--pointer] as E
     }
+
+    override val isEmpty: Boolean get() = pointer == 0
 }

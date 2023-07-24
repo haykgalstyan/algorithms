@@ -6,6 +6,10 @@ interface Stack<E> {
 
     fun push(element: E)
 
-    @Throws(EmptyStackException::class)
+    /**
+     * throws [EmptyStackException] if the stack is empty
+     */
     fun pop(): E
+
+    val isEmpty: Boolean
 }

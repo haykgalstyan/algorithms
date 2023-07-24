@@ -5,13 +5,13 @@ import java.util.*
 
 class ResizableArrayStack<E>(initialCapacity: Int = 10) : Stack<E> {
 
-    private var array = Array<Any?>(initialCapacity) { null }
+    private var array = Array<Any?>(initialCapacity) {}
     private var pointer = 0
 
     override fun push(element: E) {
         // move to a 2x bigger array if this one is full
         if (pointer == array.size) {
-            val newArray = Array<Any?>(array.size * 2) { null }
+            val newArray = Array<Any?>(array.size * 2) {}
             for (i in array.indices) newArray[i] = array[i]
             array = newArray
         }
@@ -26,7 +26,7 @@ class ResizableArrayStack<E>(initialCapacity: Int = 10) : Stack<E> {
         }
         // move to a 2x smaller array if this one is only 1/4 full
         if (pointer == array.size / 4) {
-            val newArray = Array<Any?>(array.size / 2) { null }
+            val newArray = Array<Any?>(array.size / 2) {}
             for (i in newArray.indices) newArray[i] = array[i]
             array = newArray
         }
@@ -34,4 +34,6 @@ class ResizableArrayStack<E>(initialCapacity: Int = 10) : Stack<E> {
         @Suppress("UNCHECKED_CAST")
         return array[--pointer] as E
     }
+
+    override val isEmpty: Boolean get() = pointer == 0
 }
