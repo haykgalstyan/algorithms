@@ -1,5 +1,6 @@
 package algorithms.sort
 
+
 /**
  * Perform a merge sort on [data]
  *
@@ -15,6 +16,12 @@ package algorithms.sort
  * 2. Recursively merge back while sorting the halves:
  *    a: Copy array into the auxiliary array.
  *    b: Merge back into original array while comparing and sorting.
+ *
+ * TODO: There are optimisations that can be made for this:
+ * - Don't merge if already sorted. When largest item in left half is smaller than smaller item on the right half.
+ * - Don't copy into auxiliary array, instead switch the roles of the arrays, so that the second one is auxiliary.
+ *
+ * TODO: There should also be a version which works with comparators instead of just comparables.
  */
 inline fun <reified T : Comparable<T>> mergeSort(data: Array<T>) {
     // create an empty array, but treat it as non-null.
