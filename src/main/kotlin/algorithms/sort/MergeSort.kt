@@ -6,7 +6,7 @@ package algorithms.sort
  * Merge sort recursively divides the array into halves until there are
  * single elements in each.
  * Then performs merging while also sorting the elements. This step is separated
- * into two steps of its own, where first all elements are copied into and
+ * into two steps of its own, where first all elements are copied into an
  * auxiliary array and then merged (while sorted) into the original array [data].
  *
  * 1. Recursively divide array in halves.
