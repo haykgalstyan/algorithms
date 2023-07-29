@@ -1,6 +1,19 @@
 package algorithms.sort
 
-
+/**
+ * Perform a merge sort on [data]
+ *
+ * Merge sort recursively divides the array into halves until there are
+ * single elements in each.
+ * Then performs merging while also sorting the elements. This step is separated
+ * into two steps of its own, where first all elements are copied into and
+ * auxiliary array and then merged (while sorted) into the original array [data].
+ *
+ * 1. Recursively divide array in halves.
+ * 2. Recursively merge back while sorting the halves:
+ *    a: Copy array into the auxiliary array.
+ *    b: Merge back into original array while comparing and sorting.
+ */
 inline fun <reified T : Comparable<T>> mergeSort(data: Array<T>) {
     // create an empty array, but treat it as non-null.
     @Suppress("UNCHECKED_CAST")
