@@ -3,21 +3,23 @@ package algorithms.sort
 /**
  * Perform a merge sort on [data]
  *
- * Merge sort recursively divides the array into halves until there are
- * single elements in each.
- * Then performs merging while also sorting the elements. This step is separated
- * into two steps of its own, where first all elements are copied into an
- * auxiliary array and then merged (while sorted) into the original array [data].
+ * Merge sort recursively divides an array into halves until there are single elements in each,
+ * then performs merging while also sorting the elements.
+ * The second step is separated into two steps of its own, where first
+ * all elements are copied into an auxiliary array and then
+ * merged (while sorted) into the original array [data].
  *
- * 1. Recursively divide array in halves.
+ * (Dividing and merge-sorting are done in-place, using indexes for ranges rather than creating new arrays.)
+ *
+ * 1. Recursively divide array into halves.
  * 2. Recursively merge back while sorting the halves:
  *    a: Copy array into the auxiliary array.
  *    b: Merge back into original array while comparing and sorting.
  */
 inline fun <reified T : Comparable<T>> mergeSort(data: Array<T>) {
     // create an empty array, but treat it as non-null.
-    @Suppress("UNCHECKED_CAST")
-    val tempArray: Array<T> = Array<T?>(data.size) { null } as Array<T>
+    @Suppress("UNCHECKED_CAST") val tempArray: Array<T> =
+        Array<T?>(data.size) { null } as Array<T>
     sort(data, tempArray, 0, data.size - 1)
 }
 
