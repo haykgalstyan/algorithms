@@ -1,9 +1,10 @@
 package algorithms.sort
 
+import algorithms.sort.mergesort.mergeSort
 import org.junit.jupiter.api.Test
 import kotlin.test.assertContentEquals
 
-class MergeSortKtTest {
+class MergeSortRecusriveKtTest {
 
     @Test
     fun `Test merge sort works`() {
