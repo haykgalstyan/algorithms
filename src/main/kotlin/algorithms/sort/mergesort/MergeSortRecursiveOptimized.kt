@@ -23,7 +23,7 @@ import algorithms.sort.ComparableSort
  */
 class MergeSortRecursiveOptimized : ComparableSort {
 
-    override fun <T : Comparable<T>> invoke(data: Array<T>) {
+    override fun <T : Comparable<T>> sort(data: Array<T>) {
         // create an empty array of T. I know, it looks disgusting...
         @Suppress("UNCHECKED_CAST")
         val tempArray: Array<T> =

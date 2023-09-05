@@ -11,12 +11,12 @@ fun main(args: Array<String>) {
     var timeTotalNonRecursive = 0L
     repeat(runs) {
         val recursiveTime = measureTimeMillis {
-            MergeSortRecursive()(DataRepository.getNumbers(count = dataCount))
+            MergeSortRecursive().sort(DataRepository.getNumbers(count = dataCount))
         }
         timeTotalRecursive += recursiveTime
 
         val nonRecursiveTime = measureTimeMillis {
-            MergeSortBottomUp()(DataRepository.getNumbers(count = dataCount))
+            MergeSortBottomUp().sort(DataRepository.getNumbers(count = dataCount))
         }
         timeTotalNonRecursive += nonRecursiveTime
     }
