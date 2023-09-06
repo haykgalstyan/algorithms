@@ -2,6 +2,7 @@ package ds.queue
 
 import kotlin.NoSuchElementException
 
+
 class LazyMaxPriorityQueue<E>(
     capacity: Int,
     private val comparator: Comparator<E>
@@ -17,18 +18,15 @@ class LazyMaxPriorityQueue<E>(
     override fun dequeue(): E {
         if (isEmpty()) throw NoSuchElementException()
 
-        val size = array.size
-        var max: E? = null
-        for (i in array.indices) {
-            val e = array[i] as E
-
-            if (max == null || comparator.compare(e, max) > 0) {
-                max = e
-                // move element to the end
-                array[i] = array[size - 1]
-                array[size - 1] = max
+        val sz = array.size
+        var maxIndex = 0
+        for (i in array.indices)
+            if (comparator.compare(array[i] as E, array[maxIndex] as E) > 0) {
+                maxIndex = i
+                val end = array[sz - 1]
+                array[sz - 1] = array[maxIndex]
+                array[maxIndex] = end
             }
-        }
 
         @Suppress("UNCHECKED_CAST")
         return array[--pointer] as E
