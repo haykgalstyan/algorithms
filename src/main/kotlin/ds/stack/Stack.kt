@@ -11,5 +11,10 @@ interface Stack<E> {
      */
     fun pop(): E
 
-    val isEmpty: Boolean
+    /**
+     * throws [EmptyStackException] if the stack is empty
+     */
+    fun peek(): E
+
+    fun isEmpty(): Boolean
 }

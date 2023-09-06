@@ -12,11 +12,18 @@ class ArrayStack<E>(capacity: Int) : Stack<E> {
     }
 
     override fun pop(): E {
-        if (isEmpty) throw EmptyStackException()
+        if (isEmpty()) throw EmptyStackException()
 
         @Suppress("UNCHECKED_CAST")
         return array[--pointer] as E
     }
 
-    override val isEmpty: Boolean get() = pointer == 0
+    override fun peek(): E {
+        if (isEmpty()) throw EmptyStackException()
+
+        @Suppress("UNCHECKED_CAST")
+        return array[pointer] as E
+    }
+
+    override fun isEmpty() = pointer == 0
 }

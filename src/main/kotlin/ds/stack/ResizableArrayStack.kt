@@ -35,5 +35,14 @@ class ResizableArrayStack<E>(initialCapacity: Int = 10) : Stack<E> {
         return array[--pointer] as E
     }
 
-    override val isEmpty: Boolean get() = pointer == 0
+    override fun peek(): E {
+        if (pointer == 0) {
+            throw EmptyStackException()
+        }
+
+        @Suppress("UNCHECKED_CAST")
+        return array[pointer] as E
+    }
+
+    override fun isEmpty() = pointer == 0
 }
