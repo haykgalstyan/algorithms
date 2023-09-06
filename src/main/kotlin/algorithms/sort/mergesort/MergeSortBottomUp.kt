@@ -6,8 +6,7 @@ import kotlin.math.min
 
 /**
  * Bottom up non-recursive merge sort implementation.
- * This version is simpler, but about 10% slower than recursive,
- * top-down mergesort on typical systems.
+ * This version is said to be slower than the recursive version...
  * It was as fast as the recursive version on my tests though :)
  */
 class MergeSortBottomUp : ComparableSort {
@@ -18,20 +17,20 @@ class MergeSortBottomUp : ComparableSort {
         val tempArray: Array<T> =
             Array<Comparable<Any>?>(data.size) { null } as Array<T>
 
-        var size = 1
-        while (size < data.size) {
+        val size = data.size
+        var partSize = 1
+        while (partSize < size) {
             var low = 0
-            while (low < data.size - size) {
+            while (low < size - partSize) {
                 merge(
-                    data,
-                    tempArray,
+                    data, tempArray,
                     low,
-                    low + size - 1,
-                    min(low + size + size - 1, data.size - 1)
+                    low + partSize - 1,
+                    min(low + partSize + partSize - 1, size - 1)
                 )
-                low += size + size
+                low += partSize + partSize
             }
-            size += size
+            partSize += partSize
         }
     }
 

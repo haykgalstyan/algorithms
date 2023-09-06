@@ -4,21 +4,21 @@ import data.DataRepository
 import kotlin.system.measureTimeMillis
 
 fun main(args: Array<String>) {
-    val dataCount = 1_000_000
+    val dataCount = 10_000_000
     val runs = 100
 
     var timeTotalRecursive = 0L
     var timeTotalNonRecursive = 0L
     repeat(runs) {
-        val recursiveTime = measureTimeMillis {
-            MergeSortRecursive()(DataRepository.getNumbers(count = dataCount))
-        }
-        timeTotalRecursive += recursiveTime
-
         val nonRecursiveTime = measureTimeMillis {
             MergeSortBottomUp()(DataRepository.getNumbers(count = dataCount))
         }
         timeTotalNonRecursive += nonRecursiveTime
+
+        val recursiveTime = measureTimeMillis {
+            MergeSortRecursive()(DataRepository.getNumbers(count = dataCount))
+        }
+        timeTotalRecursive += recursiveTime
     }
     val averageTimeRecursive = timeTotalRecursive / runs
     val averageTimeNonRecursive = timeTotalNonRecursive / runs
