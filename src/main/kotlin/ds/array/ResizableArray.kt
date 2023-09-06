@@ -22,7 +22,7 @@ class ResizableArray<E>(initialCapacity: Int) : DynamicArray<E> {
         // todo
     }
 
-    override val size: Int get() = pointer
+    override fun size() = pointer
 
 
     private fun growIfNeeded() {

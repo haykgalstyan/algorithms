@@ -7,5 +7,5 @@ interface Array<E> {
 
     fun set(index: Int, element: E)
 
-    val size: Int
+    fun size(): Int
 }
