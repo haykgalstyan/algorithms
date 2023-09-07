@@ -1,14 +1,12 @@
 package ds.queue
 
-import ds.queue.ArrayQueue
-import ds.queue.Queue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 import kotlin.test.assertEquals
 
-class LazyMaxPriorityQueueTest {
+class OrderedMaxPriorityQueueTest {
 
     private val size = 10
     private lateinit var queue: Queue<Int>
@@ -16,7 +14,7 @@ class LazyMaxPriorityQueueTest {
 
     @BeforeEach
     fun setup() {
-        queue = LazyMaxPriorityQueue(size, comparator)
+        queue = OrderedMaxPriorityQueue(size, comparator)
     }
 
     @Test

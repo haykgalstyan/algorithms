@@ -1,8 +1,13 @@
 package ds.queue
 
-
+/***
+ * Unordered (lazy) implementation of max priority queue.
+ * [enqueue] constant time
+ * [dequeue] n
+ * [peek] n
+ */
 @Suppress("UNCHECKED_CAST")
-class LazyMaxPriorityQueue<E>(
+class UnorderedMaxPriorityQueue<E>(
     capacity: Int,
     private val comparator: Comparator<E>
 ) : Queue<E> {

@@ -27,3 +27,4 @@ fun runCompareSortMerge() {
     println("MergeSort R, averageTime: $averageTimeRecursive")
     println("MergeSort NR, averageTime: $averageTimeNonRecursive")
 }
+
