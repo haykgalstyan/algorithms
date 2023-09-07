@@ -1,6 +1,13 @@
 package ds.queue
 
-class BinaryHeapMaxPriorityQueue<E> : Queue<E> {
+class BinaryHeapMaxPriorityQueue<E>(
+    capacity: Int,
+    private val comparator: Comparator<E>,
+) : Queue<E> {
+
+    private var array = Array<Any?>(capacity) {}
+    private var pointer = 0
+
 
     override fun enqueue(element: E) {
         TODO("Not yet implemented")
@@ -11,10 +18,19 @@ class BinaryHeapMaxPriorityQueue<E> : Queue<E> {
     }
 
     override fun peek(): E {
-        TODO("Not yet implemented")
+        return array[pointer] as E
     }
 
-    override fun isEmpty(): Boolean {
-        TODO("Not yet implemented")
+    override fun isEmpty() = pointer == 0
+
+
+    private fun promote(i: Int) {
+        while (i > 1 && comparator.compare(i / 2, i)) {
+
+        }
+    }
+
+    private fun demote(i: Int) {
+
     }
 }
