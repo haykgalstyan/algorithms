@@ -4,12 +4,13 @@ package ds.queue
  * Ordered implementation of max priority queue.
  * [enqueue] n
  * [dequeue] constant time
- * [peek] constant time (This is the advantage over [UnorderedMaxPriorityQueue], and even better would be a binary heap)
+ * [peek] constant time (This is the advantage over [UnorderedMaxPriorityQueue])
+ * See [BinaryHeapMaxPriorityQueue] for log n all operations impl.
  */
 @Suppress("UNCHECKED_CAST")
 class OrderedMaxPriorityQueue<E>(
     capacity: Int,
-    private val comparator: Comparator<E>
+    private val comparator: Comparator<E>,
 ) : Queue<E> {
 
     private var array = Array<Any?>(capacity) {}
