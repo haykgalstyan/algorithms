@@ -10,7 +10,8 @@ class BinaryHeapMaxPriorityQueue<E>(
 
 
     override fun enqueue(element: E) {
-        TODO("Not yet implemented")
+        array[++pointer] = element
+        promoteNode()
     }
 
     override fun dequeue(): E {
@@ -24,12 +25,35 @@ class BinaryHeapMaxPriorityQueue<E>(
     override fun isEmpty() = pointer == 0
 
 
-    private fun promote(i: Int) {
-        while (i > 1 && comparator.compare(i / 2, i)) {
-
+    /***
+     * Promote the node until heap order is restored.
+     *
+     * [enqueue] inserts a node at the end possibly causing a violation
+     * of heap order, because the node can be larger than the parent.
+     * The node needs to be promoted until the heap order is restored.
+     */
+    @Suppress("UNCHECKED_CAST")
+    private fun promoteNode() {
+        var i = pointer
+        while (
+            i > 1 &&
+            comparator.compare(array[i] as E, array[i / 2] as E) > 0
+        ) {
+            val node = array[i] as E
+            val parent = array[i / 2] as E
+            array[i / 2] = node
+            array[i] = parent
+            i /= 2
         }
     }
 
+    /***
+     * Demote the node until heap order is restored.
+     *
+     * [enqueue] inserts a node at the end possibly causing a violation
+     * of heap order, because the node can be larger than the parent.
+     * The node needs to be promoted until the heap order is restored.
+     */
     private fun demote(i: Int) {
 
     }
