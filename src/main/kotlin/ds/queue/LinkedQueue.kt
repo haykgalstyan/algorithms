@@ -11,6 +11,8 @@ class LinkedQueue<E>(capacity: Int) : Queue<E> {
     }
 
     override fun dequeue(): E {
+        if (isEmpty()) throw NoSuchElementException()
+
         TODO()
     }
 

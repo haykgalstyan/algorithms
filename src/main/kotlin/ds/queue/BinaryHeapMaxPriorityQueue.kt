@@ -10,16 +10,22 @@ class BinaryHeapMaxPriorityQueue<E>(
 
 
     override fun enqueue(element: E) {
-        array[++pointer] = element
+        this[++pointer] = element
         promoteNode()
     }
 
     override fun dequeue(): E {
-        TODO("Not yet implemented")
+        if (isEmpty()) throw NoSuchElementException()
+
+        val e = this[1]
+        swap(1, pointer--)
+        demote()
+        this[pointer + 1] = null
+        return e
     }
 
     override fun peek(): E {
-        return get(pointer)
+        return this[pointer]
     }
 
     override fun isEmpty() = pointer == 0
@@ -35,11 +41,11 @@ class BinaryHeapMaxPriorityQueue<E>(
      */
     private fun promoteNode() {
         var i = pointer
-        while (i > 1 && comparator.compare(get(i), get(i / 2)) > 0) {
-            val node = get(i)
-            val parent = get(i / 2)
-            array[i / 2] = node
-            array[i] = parent
+        while (i > 1 && comparator.compare(this[i], this[i / 2]) > 0) {
+            val node = this[i]
+            val parent = this[i / 2]
+            this[i / 2] = node
+            this[i] = parent
             i /= 2
         }
     }
@@ -54,24 +60,31 @@ class BinaryHeapMaxPriorityQueue<E>(
      * (Top-down reheapification)
      */
     private fun demote() {
-        var k = pointer
+        var k = 1
 
         while (2 * k <= pointer) {
-
             // pick the (smaller? larger?) child
             var j = 2 * k
-            if (j < pointer && comparator.compare(get(j), get(j + 1)) < 0) j++
+            if (j < pointer && comparator.compare(this[j], this[j + 1]) < 0) j++
 
             // check if done
-            if (comparator.compare(get(k), get(j)) > 0) break
+            if (comparator.compare(this[k], this[k]) > 0) break
 
-            // exchange k with j
-            // todo
+            swap(k, j)
 
             k = j
         }
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun get(index: Int) = array[index] as E
+    private operator fun get(index: Int) = array[index] as E
+    private operator fun set(index: Int, element: E?) {
+        array[index] = element
+    }
+
+    private fun swap(a: Int, b: Int) {
+        val aa = this[a]
+        this[a] = this[b]
+        this[b] = aa
+    }
 }
