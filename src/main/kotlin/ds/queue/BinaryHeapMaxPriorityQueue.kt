@@ -5,6 +5,9 @@ class BinaryHeapMaxPriorityQueue<E>(
     private val comparator: Comparator<E>,
 ) : Queue<E> {
 
+    /**
+     * [array[0]] will be left empty to simplify calculations
+     */
     private var array = Array<Any?>(capacity + 1) {}
     private var pointer = 0
 
@@ -17,15 +20,15 @@ class BinaryHeapMaxPriorityQueue<E>(
     override fun dequeue(): E {
         if (isEmpty()) throw NoSuchElementException()
 
-        val e = this[1]
+        val highest = this[1]
         swap(1, pointer--)
         demote()
         this[pointer + 1] = null
-        return e
+        return highest
     }
 
     override fun peek(): E {
-        return this[pointer]
+        return this[1]
     }
 
     override fun isEmpty() = pointer == 0
@@ -57,16 +60,15 @@ class BinaryHeapMaxPriorityQueue<E>(
      * (Top-down reheapification)
      */
     private fun demote() {
-        var k = 1
-
-        while (2 * k <= pointer) {
+        var i = 1
+        while (2 * i <= pointer) {
             // pick the child
-            var j = 2 * k
-            if (j < pointer && compare(j + 1, j) > 0) j++
+            var ch = 2 * i
+            if (ch < pointer && compare(ch + 1, ch) > 0) ch++
 
-            if (compare(k, j) > 0) break
-            swap(k, j)
-            k = j
+            if (compare(i, ch) > 0) break
+            swap(i, ch)
+            i = ch
         }
     }
 
