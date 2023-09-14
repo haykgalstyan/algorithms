@@ -11,7 +11,7 @@ import kotlin.math.min
  */
 class MergeSortBottomUp : ComparableSort {
 
-    override fun <T : Comparable<T>> sort(data: Array<T>) {
+    override operator fun <T : Comparable<T>> invoke(data: Array<T>) {
         // create an empty array of T. I know, it looks disgusting...
         @Suppress("UNCHECKED_CAST")
         val tempArray: Array<T> =
