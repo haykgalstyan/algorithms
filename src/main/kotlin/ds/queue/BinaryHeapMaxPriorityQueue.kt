@@ -1,5 +1,6 @@
 package ds.queue
 
+
 class BinaryHeapMaxPriorityQueue<E>(
     capacity: Int,
     private val comparator: Comparator<E>,
@@ -7,6 +8,11 @@ class BinaryHeapMaxPriorityQueue<E>(
 
     /**
      * [array[0]] will be left empty to simplify calculations
+     * array[1] is the highest priority element
+     *
+     * [1]..[capacity + 1] will contain tree nodes, breadth-first, heap order.
+     * parent of node [i] or [i+1] will be [i/2]
+     * children of the node [i] will be [2i] and [2i + 1]
      */
     private var array = Array<Any?>(capacity + 1) {}
     private var pointer = 0
