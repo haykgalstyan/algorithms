@@ -5,7 +5,7 @@ class BinaryHeapMaxPriorityQueue<E>(
     private val comparator: Comparator<E>,
 ) : Queue<E> {
 
-    private var array = Array<Any?>(capacity) {}
+    private var array = Array<Any?>(capacity + 1) {}
     private var pointer = 0
 
 
@@ -41,11 +41,8 @@ class BinaryHeapMaxPriorityQueue<E>(
      */
     private fun promoteNode() {
         var i = pointer
-        while (i > 1 && comparator.compare(this[i], this[i / 2]) > 0) {
-            val node = this[i]
-            val parent = this[i / 2]
-            this[i / 2] = node
-            this[i] = parent
+        while (i > 1 && compare(i, i / 2) > 0) {
+            swap(i, i / 2)
             i /= 2
         }
     }
@@ -63,15 +60,12 @@ class BinaryHeapMaxPriorityQueue<E>(
         var k = 1
 
         while (2 * k <= pointer) {
-            // pick the (smaller? larger?) child
+            // pick the child
             var j = 2 * k
-            if (j < pointer && comparator.compare(this[j], this[j + 1]) < 0) j++
+            if (j < pointer && compare(j + 1, j) > 0) j++
 
-            // check if done
-            if (comparator.compare(this[k], this[k]) > 0) break
-
+            if (compare(k, j) > 0) break
             swap(k, j)
-
             k = j
         }
     }
@@ -81,6 +75,8 @@ class BinaryHeapMaxPriorityQueue<E>(
     private operator fun set(index: Int, element: E?) {
         array[index] = element
     }
+
+    private fun compare(a: Int, b: Int) = comparator.compare(this[a], this[b])
 
     private fun swap(a: Int, b: Int) {
         val aa = this[a]

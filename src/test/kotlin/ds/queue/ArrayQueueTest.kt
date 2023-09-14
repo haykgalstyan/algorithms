@@ -20,9 +20,7 @@ class ArrayQueueTest {
 
     @Test
     fun `Test pop always matches pushed item`() {
-        repeat(size) {
-            queue.enqueue(it)
-        }
+        repeat(size) { queue.enqueue(it) }
         repeat(size) {
             assertEquals(it, queue.dequeue())
         }
@@ -32,7 +30,7 @@ class ArrayQueueTest {
     fun `Test capacity exceed throws`() {
         repeat(size) { queue.enqueue(it) }
         assertThrows<IndexOutOfBoundsException> {
-            queue.enqueue(11)
+            queue.enqueue(size + 1)
         }
     }
 

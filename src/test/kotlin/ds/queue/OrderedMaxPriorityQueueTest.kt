@@ -19,9 +19,7 @@ class OrderedMaxPriorityQueueTest {
 
     @Test
     fun `Test pop always matches pushed item`() {
-        repeat(size) {
-            queue.enqueue(it)
-        }
+        repeat(size) { queue.enqueue(it) }
         repeat(size) {
             val expected = size - it - 1
             assertEquals(expected, queue.dequeue())
@@ -32,7 +30,7 @@ class OrderedMaxPriorityQueueTest {
     fun `Test capacity exceed throws`() {
         repeat(size) { queue.enqueue(it) }
         assertThrows<IndexOutOfBoundsException> {
-            queue.enqueue(11)
+            queue.enqueue(size + 1)
         }
     }
 
