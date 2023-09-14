@@ -28,7 +28,7 @@ class BinaryHeapMaxPriorityQueue<E>(
 
         val highest = this[1]
         swap(1, pointer--)
-        demote()
+        demoteNode()
         this[pointer + 1] = null
         return highest
     }
@@ -51,6 +51,7 @@ class BinaryHeapMaxPriorityQueue<E>(
     private fun promoteNode() {
         var i = pointer
         while (i > 1 && compare(i, i / 2) > 0) {
+            // swap node [i] with its parent [i/2] while its larger
             swap(i, i / 2)
             i /= 2
         }
@@ -65,13 +66,13 @@ class BinaryHeapMaxPriorityQueue<E>(
      * The node needs to be demoted until the heap order is restored.
      * (Top-down reheapification)
      */
-    private fun demote() {
+    private fun demoteNode() {
         var i = 1
         while (2 * i <= pointer) {
-            // pick the child
+            // pick the larger child (if not end of heap)
             var ch = 2 * i
             if (ch < pointer && compare(ch + 1, ch) > 0) ch++
-
+            // check if done, otherwise exchange
             if (compare(i, ch) > 0) break
             swap(i, ch)
             i = ch
