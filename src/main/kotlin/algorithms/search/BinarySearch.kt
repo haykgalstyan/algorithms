@@ -2,20 +2,22 @@ package algorithms.search
 
 /***
  * Basic binary search:
- * Places a window of left and right indices on the [array].
+ * Places a window from [left] to [right] on the [array].
  * Then compares mid of the window to the search [element].
  * Cuts the window from left or right depending on the comparison.
  * Repeats until window size is 0 or the comparison results in a match.
+ *
+ * @return index of the [element] or -1 if not found.
  */
 fun <E> binarySearch(
     array: Array<E>,
     element: E,
-    start: Int = 0,
-    end: Int = array.size - 1,
+    left: Int = 0,
+    right: Int = array.size - 1,
     comparator: Comparator<E>,
 ): Int {
-    var l = start
-    var r = end
+    var l = left
+    var r = right
 
     while (l <= r) {
         val m = (l + r) / 2
