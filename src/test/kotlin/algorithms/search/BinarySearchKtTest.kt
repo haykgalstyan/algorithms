@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 class BinarySearchKtTest {
 
-    private val input = arrayOf(
+    private val sortedInput = arrayOf(
         "A", "B", "C", "D", "E", "F", "G",
     )
 
@@ -15,7 +15,7 @@ class BinarySearchKtTest {
     fun `Test search works`() {
         val expected = 3
         val search = "D"
-        val actual = binarySearch(input, search, comparator = comparator)
+        val actual = binarySearch(sortedInput, search, comparator = comparator)
 
         assertEquals(expected, actual)
     }
@@ -24,7 +24,7 @@ class BinarySearchKtTest {
     fun `Test not found returns invalid index`() {
         val expected = -1
         val search = "H"
-        val actual = binarySearch(input, search, comparator = comparator)
+        val actual = binarySearch(sortedInput, search, comparator = comparator)
 
         assertEquals(expected, actual)
     }

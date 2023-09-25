@@ -2,6 +2,8 @@ package algorithms.search
 
 /***
  * Basic binary search:
+ * @param array is assumed to be sorted, otherwise result is undefined.
+ *
  * Places a window from [left] to [right] on the [array].
  * Then compares mid of the window to the search [element].
  * Cuts the window from left or right depending on the comparison.
