@@ -1,6 +1,6 @@
 package algorithms.sort
 
-/***
+/**
  * Sorts an array of comparables
  */
 interface ComparableSort {

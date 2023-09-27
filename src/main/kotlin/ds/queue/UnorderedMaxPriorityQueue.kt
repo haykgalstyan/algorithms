@@ -1,6 +1,6 @@
 package ds.queue
 
-/***
+/**
  * Unordered (lazy) implementation of max priority queue.
  * [enqueue] constant time
  * [dequeue] n

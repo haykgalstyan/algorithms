@@ -1,6 +1,6 @@
 package algorithms.search
 
-/***
+/**
  * Basic binary search:
  * @param array is assumed to be sorted, otherwise result is undefined.
  *

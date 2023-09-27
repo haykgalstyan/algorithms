@@ -40,7 +40,7 @@ class BinaryHeapMaxPriorityQueue<E>(
     override fun isEmpty() = pointer == 0
 
 
-    /***
+    /**
      * Promote the node until heap order is restored.
      *
      * [enqueue] inserts a node at the end possibly causing a violation
@@ -57,7 +57,7 @@ class BinaryHeapMaxPriorityQueue<E>(
         }
     }
 
-    /***
+    /**
      * Demote the node until heap order is restored.
      *
      * [dequeue] exchanges the priority element with the end node and drops it
