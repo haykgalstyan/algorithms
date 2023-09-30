@@ -1,12 +1,13 @@
 package ds.tree
 
+import ds.map.tree.BinarySearchTree
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class BinarySearchTreeTest {
 
-    private val data = mapOf(
+    private val input = mapOf(
         "Alice" to 123,
         "Bob" to 222,
         "John" to 321,
@@ -23,15 +24,29 @@ class BinarySearchTreeTest {
     }
 
     @Test
-    fun `Test getting inserted data works`() {
-        data.onEach { bst.insert(it.key, it.value) }
-        data.onEach { assertEquals(it.value, bst.get(it.key)) }
+    fun `Test put and get work`() {
+        input.onEach { bst.put(it.key, it.value) }
+        input.onEach { assertEquals(it.value, bst.get(it.key)) }
     }
 
     @Test
-    fun `Test deleting works`() {
-        data.onEach { bst.insert(it.key, it.value) }
-        data.onEach { bst.delete(it.key) }
-        data.onEach { assertEquals(null, bst.get(it.key)) }
+    fun `Test delete works`() {
+        input.onEach { bst.put(it.key, it.value) }
+        input.onEach { bst.delete(it.key) }
+        input.onEach { assertEquals(null, bst.get(it.key)) }
+    }
+
+    @Test
+    fun `Test contains works`() {
+        input.onEach { assertEquals(false, bst.contains(it.key)) }
+        input.onEach { bst.put(it.key, it.value) }
+        input.onEach { assertEquals(true, bst.contains(it.key)) }
+    }
+
+    @Test
+    fun `Test isEmpty works`() {
+        input.onEach { bst.put(it.key, it.value) }
+        input.onEach { bst.delete(it.key) }
+        assert(bst.isEmpty())
     }
 }

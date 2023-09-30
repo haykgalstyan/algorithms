@@ -1,6 +1,8 @@
-package ds.tree
+package ds.map.tree
 
-interface TreeExtended<K, V> : Tree<K, V> {
+import ds.map.Map
+
+interface TreeExtended<K, V> : Map<K, V> {
 
     fun size(): Int
 

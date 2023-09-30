@@ -14,4 +14,8 @@ fun main(args: Array<String>) {
     repeat(size) {
         queue.dequeue()
     }
+
+
+    val a = -10
+    println("%%% ${a % 6}")
 }

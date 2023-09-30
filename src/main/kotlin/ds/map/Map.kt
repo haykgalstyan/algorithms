@@ -1,14 +1,15 @@
 package ds.map
 
+
 interface Map<K, V> {
 
     fun put(key: K, value: V)
 
-    fun get(key: K): V
+    fun get(key: K): V?
 
-    fun contains(key: K): V
+    fun delete(key: K)
 
-    fun delete(key: K): V
+    fun contains(key: K): Boolean
 
     fun isEmpty(): Boolean
 }

@@ -1,4 +1,6 @@
-package ds.tree
+package ds.map.tree
+
+import ds.map.Map
 
 
 /**
@@ -12,7 +14,7 @@ package ds.tree
  * skips about half of the remaining tree, the lookup performance is proportional
  * to that of binary logarithm (log n).
  *
- * Number of compares for [insert] and [get] is 1 + node depth.
+ * Number of compares for [put] and [get] is 1 + node depth.
  *
  * Big O chart:
  * Algorithm:	Average:    Worst case:
@@ -41,7 +43,7 @@ package ds.tree
 class BinarySearchTree<K, V>(
     val comparator: Comparator<K>,
     private var root: Node<K, V>? = null,
-) : Tree<K, V> {
+) : Map<K, V> {
 
     data class Node<K, V>(
         val key: K,
@@ -50,11 +52,11 @@ class BinarySearchTree<K, V>(
         var right: Node<K, V>? = null,
     )
 
-    override fun insert(key: K, value: V) {
-        root = insert(key, value, root)
+    override fun put(key: K, value: V) {
+        root = put(key, value, root)
     }
 
-    private fun insert(
+    private fun put(
         key: K,
         value: V,
         node: Node<K, V>?
@@ -67,9 +69,9 @@ class BinarySearchTree<K, V>(
         // search for the key node to update
         val cmp = comparator.compare(key, node.key)
         if (cmp < 0) // key is smaller, go deeper to left
-            node.left = insert(key, value, node.left)
+            node.left = put(key, value, node.left)
         else if (cmp > 0) // key is larger, go deeper to right
-            node.right = insert(key, value, node.right)
+            node.right = put(key, value, node.right)
         else // key found in the tree, update the value
             node.value = value
 
@@ -160,5 +162,27 @@ class BinarySearchTree<K, V>(
         if (node.left == null) return node.right
         node.left = deleteMin(node.left!!)
         return node
+    }
+
+    /**
+     * Binary search for the [key]
+     * Same as [get] just returning a boolean instead of the value
+     */
+    override fun contains(key: K): Boolean {
+        var node = root
+        while (node != null) {
+            val cmp = comparator.compare(key, node.key)
+            // key is smaller, go deeper to left
+            if (cmp < 0) node = node.left
+            // key is larger, go deeper to right
+            else if (cmp > 0) node = node.right
+            // found the key, return tre
+            else return true
+        }
+        return false
+    }
+
+    override fun isEmpty(): Boolean {
+        return root == null
     }
 }

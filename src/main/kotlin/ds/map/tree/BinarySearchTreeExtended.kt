@@ -1,4 +1,4 @@
-package ds.tree
+package ds.map.tree
 
 
 /**
@@ -7,7 +7,7 @@ package ds.tree
  */
 class BinarySearchTreeExtended<K, V> : TreeExtended<K, V> {
 
-    override fun insert(key: K, value: V) {
+    override fun put(key: K, value: V) {
         TODO("Not yet implemented")
     }
 
@@ -16,6 +16,10 @@ class BinarySearchTreeExtended<K, V> : TreeExtended<K, V> {
     }
 
     override fun delete(key: K) {
+        TODO("Not yet implemented")
+    }
+
+    override fun contains(key: K): Boolean {
         TODO("Not yet implemented")
     }
 
@@ -52,6 +56,10 @@ class BinarySearchTreeExtended<K, V> : TreeExtended<K, V> {
     }
 
     override fun index(key: K): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun isEmpty(): Boolean {
         TODO("Not yet implemented")
     }
 }
