@@ -25,16 +25,15 @@ import ds.map.Map
  * Another approach that is typically used for this is masking to remove the sign bit.
  * key.hashCode() & Integer.MAX_VALUE
  *
+ * Modding the hashcode with the table size,
+ * will produce a number between 0 and tableSize -1.
+ *
  * Working hash function:
  * (key.hashCode() & Integer.MAX_VALUE) % tableSize
  * where tableSize is a power of 2 or a prime number.
  *
  */
 class HashTable<K, V> : Map<K, V> {
-
-    init {
-        Math.abs(-1)
-    }
 
     override fun put(key: K, value: V) {
         TODO("Not yet implemented")
