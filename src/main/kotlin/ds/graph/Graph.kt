@@ -4,13 +4,13 @@ package ds.graph
  * Nodes are also called vertices in graphs.
  * Edges are the connections of nodes.
  */
-interface Graph {
+interface Graph<T> {
 
-    fun connect(node1: Int, node2: Int)
+    fun connect(node1: T, node2: T)
 
-    fun getAdjacent(node: Int): Iterable<Int>
+    fun getAdjacent(node: T): Set<T>
 
-    fun getNodes(): Int
+    fun getNodes(): Set<T>
 
-    fun getEdges(): Int
+    fun getEdges(): Set<T>
 }
