@@ -6,11 +6,7 @@ package ds.graph
  */
 interface Graph<T> {
 
-    fun connect(node1: T, node2: T)
-
     fun getAdjacent(node: T): Set<T>
 
     fun getNodes(): Set<T>
-
-    fun getEdges(): Set<T>
 }
