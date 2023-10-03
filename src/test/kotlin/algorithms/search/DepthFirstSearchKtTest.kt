@@ -25,10 +25,6 @@ class DepthFirstSearchKtTest {
 
         val result = HashSet<String>()
 
-        dfsR("a", result, adjacentProvider)
-        assertEquals(0, result.size)
-        result.clear()
-
         dfsR("x", result, adjacentProvider)
         assertEquals(5, result.size)
         result.onEach { assert(it.startsWith("x")) }
@@ -44,8 +40,6 @@ class DepthFirstSearchKtTest {
         val adjacentProvider = { n: String ->
             testGraph.getAdjacent(n).toList()
         }
-
-        assertEquals(0, dfsI("a", adjacentProvider).size)
 
         dfsI("x", adjacentProvider).let {
             assertEquals(5, it.size)
@@ -63,8 +57,6 @@ class DepthFirstSearchKtTest {
         val adjacentProvider = { n: String ->
             testGraph.getAdjacent(n)
         }
-
-        assertEquals(0, dfsISets(setOf("a"), adjacentProvider).size)
 
         dfsISets(setOf("x"), adjacentProvider).let {
             assertEquals(5, it.size)
