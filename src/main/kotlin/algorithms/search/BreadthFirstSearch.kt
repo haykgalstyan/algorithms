@@ -1,31 +1,7 @@
 package algorithms.search
 
-
-import java.util.ArrayDeque
-
-
-/**
- * Recursive depth first search
- * Simpler than iterative versions, same complexity, but probably slower in practice.
- *
- * @param root: the root to explore
- * @param getAdjacent: Provide adjacent nodes of [T]
- * @param visited: already visited nodes, calm down and pass an empty [HashSet]
- * the resulting visited nodes will be in this hashmap.
- */
-fun <T> dfsR(
-    root: T,
-    visited: HashSet<T>,
-    getAdjacent: (T) -> Set<T>,
-) {
-    val adjacent = getAdjacent(root)
-    if (adjacent.isEmpty()) return
-    for (n in adjacent)
-        if (!visited.contains(n)) {
-            visited.add(n)
-            dfsR(n, visited, getAdjacent)
-        }
-}
+import java.util.*
+import kotlin.collections.HashSet
 
 
 /**
@@ -40,16 +16,16 @@ fun <T> dfsR(
  * While the stack is not empty, the algorithm pops a node and
  * visits its adjacent nodes if they are not in a hashset of visited nodes.
  */
-fun <T> dfsI(root: T & Any, getAdjacent: (T) -> List<T & Any>): Set<T> {
+fun <T> bfs(root: T & Any, getAdjacent: (T) -> List<T & Any>): Set<T> {
     val visited = HashSet<T>()
-    val stack = ArrayDeque<T>()
-    stack.push(root)
+    val queue: Queue<T> = ArrayDeque()
+    queue.offer(root)
 
-    while (stack.isNotEmpty()) {
-        val n = stack.pop()
+    while (queue.isNotEmpty()) {
+        val n = queue.poll()
         if (!visited.contains(n)) {
             visited.add(n)
-            for (nn in getAdjacent(n)) stack.push(nn)
+            for (nn in getAdjacent(n)) queue.offer(nn)
         }
     }
     return visited
@@ -73,7 +49,7 @@ fun <T> dfsI(root: T & Any, getAdjacent: (T) -> List<T & Any>): Set<T> {
  * In this version of [getAdjacent], if a [HashSet] is passed,
  * iteration over it would not have the best time complexity.
  */
-fun <T> dfsISets(roots: Set<T>, getAdjacent: (T) -> Set<T & Any>): Set<T> {
+fun <T> bfsISets(roots: Set<T>, getAdjacent: (T) -> Set<T & Any>): Set<T> {
     val visited = HashSet<T>()
     val stack = ArrayDeque(roots)
     while (stack.isNotEmpty()) {
