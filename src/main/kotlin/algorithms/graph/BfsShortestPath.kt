@@ -20,16 +20,14 @@ fun <T> bfs(
     dst: T & Any,
     getAdjacent: (T) -> List<T & Any>
 ): Set<T> {
-    val visited = HashSet<T>()
+    val visited = HashMap<T, T>()
     val queue: Queue<T> = ArrayDeque()
     queue.offer(root)
-
-    val path = HashMap<T, T>()
 
     while (queue.isNotEmpty()) {
         val n = queue.poll()
         if (!visited.contains(n)) {
-            visited.add(n)
+            visited.put(n, )
 
             if (n == dst) return visited
 
@@ -38,3 +36,4 @@ fun <T> bfs(
     }
     return visited
 }
+//https://stackoverflow.com/questions/8379785/how-does-a-breadth-first-search-work-when-looking-for-shortest-path
