@@ -1,6 +1,5 @@
 package ds.graph
 
-import com.sun.tools.jdeps.Graph
 
 /**
  * Nodes are also called vertices in graphs.
